@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Project — Shubham Bhatt</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0a0a0a;
+      --bone: #e8e0d0;
+      --bone-dim: rgba(232,224,208,0.55);
+      --mint: #7ecfb3;
+      --mint-dim: rgba(126,207,179,0.4);
+      --lavender: #a89cc8;
+      --border: rgba(255,255,255,0.08);
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--bone);
+      font-family: 'Inter', sans-serif;
+      min-height: 100vh;
+      cursor: none;
+    }
+
+    /* ── Custom cursor ── */
+    #cursor-dot, #cursor-ring {
+      position: fixed; top: 0; left: 0;
+      border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%,-50%);
+    }
+    #cursor-dot  { width: 5px; height: 5px; background: var(--bone); transition: transform 0.1s ease; }
+    #cursor-ring { width: 28px; height: 28px; border: 1px solid rgba(232,224,208,0.5); transition: transform 0.12s ease, width 0.2s ease, height 0.2s ease, opacity 0.2s ease; }
+    a, button { cursor: none; }
+    a:hover ~ #cursor-ring, button:hover ~ #cursor-ring { width: 40px; height: 40px; }
+
+    /* ── Nav ── */
+    .project-nav {
+      position: sticky; top: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.2rem 3rem;
+      background: rgba(10,10,10,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-back {
+      display: flex; align-items: center; gap: 0.6rem;
+      font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.15em;
+      color: var(--bone-dim); text-decoration: none;
+      text-transform: uppercase;
+      transition: color 0.2s ease;
+    }
+    .nav-back:hover { color: var(--bone); }
+    .nav-back .arrow { font-size: 14px; }
+    .nav-id {
+      font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.2em;
+      color: var(--lavender); text-transform: uppercase;
+    }
+    .nav-name {
+      font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.15em;
+      color: var(--bone-dim); text-transform: uppercase;
+    }
+
+    /* ── Hero image ── */
+    .project-hero {
+      width: 100%; height: clamp(340px, 55vh, 620px);
+      overflow: hidden; position: relative;
+    }
+    .project-hero img, .project-hero video {
+      width: 100%; height: 100%; object-fit: cover;
+      display: block;
+    }
+    .hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to bottom, transparent 55%, rgba(10,10,10,0.7) 100%);
+    }
+
+    /* ── Content ── */
+    .project-content {
+      max-width: 1100px; margin: 0 auto;
+      padding: 3.5rem 3rem 6rem;
+    }
+    .project-meta {
+      display: flex; align-items: baseline; gap: 1.2rem;
+      margin-bottom: 1rem;
+    }
+    .meta-num {
+      font-family: 'Space Mono', monospace; font-size: 9px;
+      letter-spacing: 0.25em; color: var(--lavender); text-transform: uppercase;
+    }
+    .meta-year {
+      font-family: 'Space Mono', monospace; font-size: 9px;
+      letter-spacing: 0.2em; color: var(--bone-dim); text-transform: uppercase;
+    }
+    .meta-category {
+      font-family: 'Space Mono', monospace; font-size: 9px;
+      letter-spacing: 0.15em; color: var(--mint); text-transform: uppercase;
+    }
+    .project-title {
+      font-family: 'Instrument Serif', serif;
+      font-size: clamp(2.2rem, 5vw, 4rem);
+      line-height: 1.05; color: var(--bone);
+      margin-bottom: 1.8rem;
+    }
+    .project-tags {
+      display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 2rem;
+    }
+    .project-tag {
+      font-family: 'Space Mono', monospace; font-size: 9px;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      padding: 0.3rem 0.7rem;
+      border: 1px solid var(--mint-dim); color: var(--mint);
+    }
+    .project-desc {
+      font-size: 16px; line-height: 1.75; color: var(--bone-dim);
+      max-width: 680px; margin-bottom: 4rem;
+    }
+
+    /* ── Gallery ── */
+    .gallery-label {
+      font-family: 'Space Mono', monospace; font-size: 9px;
+      letter-spacing: 0.25em; text-transform: uppercase;
+      color: var(--bone-dim); margin-bottom: 1.2rem;
+      display: flex; align-items: center; gap: 0.8rem;
+    }
+    .gallery-label::after {
+      content: ''; flex: 1; height: 1px; background: var(--border);
+    }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 3px;
+    }
+    .gallery-item {
+      aspect-ratio: 4/3; overflow: hidden; position: relative;
+      border: 1px solid var(--border); cursor: none;
+    }
+    .gallery-item img, .gallery-item video {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+      transition: transform 0.5s ease;
+    }
+    .gallery-item:hover img, .gallery-item:hover video { transform: scale(1.04); }
+
+    /* ── Lightbox ── */
+    .lightbox {
+      display: none; position: fixed; inset: 0; z-index: 1000;
+      background: rgba(5,5,5,0.96);
+      align-items: center; justify-content: center;
+    }
+    .lightbox.open { display: flex; }
+    .lightbox-img { max-width: 90vw; max-height: 90vh; object-fit: contain; }
+    .lightbox-close {
+      position: absolute; top: 1.5rem; right: 2rem;
+      font-family: 'Space Mono', monospace; font-size: 11px;
+      letter-spacing: 0.15em; color: var(--bone-dim);
+      background: none; border: none; cursor: none;
+      text-transform: uppercase;
+    }
+    .lightbox-close:hover { color: var(--bone); }
+
+    /* ── Nav arrows ── */
+    .project-nav-arrows {
+      display: flex; gap: 1rem; margin-top: 5rem;
+      border-top: 1px solid var(--border); padding-top: 2rem;
+    }
+    .nav-arrow-btn {
+      display: flex; align-items: center; gap: 0.6rem;
+      font-family: 'Space Mono', monospace; font-size: 10px;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--bone-dim); text-decoration: none;
+      transition: color 0.2s ease;
+    }
+    .nav-arrow-btn:hover { color: var(--bone); }
+    .nav-arrow-btn.next { margin-left: auto; }
+
+    @media (max-width: 640px) {
+      .project-nav { padding: 1rem 1.2rem; }
+      .project-content { padding: 2rem 1.2rem 4rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <div id="cursor-dot"></div>
+  <div id="cursor-ring"></div>
+
+  <nav class="project-nav">
+    <a class="nav-back" href="index.html"><span class="arrow">←</span> Portfolio</a>
+    <span class="nav-id" id="nav-id"></span>
+    <span class="nav-name">Shubham Bhatt</span>
+  </nav>
+
+  <div class="project-hero">
+    <img id="hero-img" src="" alt="">
+    <div class="hero-overlay"></div>
+  </div>
+
+  <div class="project-content">
+    <div class="project-meta">
+      <span class="meta-num" id="meta-num"></span>
+      <span class="meta-year" id="meta-year"></span>
+      <span class="meta-category" id="meta-cat"></span>
+    </div>
+    <h1 class="project-title" id="proj-title"></h1>
+    <div class="project-tags" id="proj-tags"></div>
+    <p class="project-desc" id="proj-desc"></p>
+
+    <div class="gallery-label">Gallery</div>
+    <div class="gallery-grid" id="gallery"></div>
+
+    <div class="project-nav-arrows">
+      <a class="nav-arrow-btn prev" id="btn-prev" href="#">← Prev project</a>
+      <a class="nav-arrow-btn next" id="btn-next" href="#">Next project →</a>
+    </div>
+  </div>
+
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" id="lb-close">Close ✕</button>
+    <img class="lightbox-img" id="lb-img" src="" alt="">
+  </div>
+
+  <script>
+    var PROJECTS = [
+      {
+        num: '001', year: '2026', category: 'Tangible Interface',
+        title: 'Bloom : Water Lily',
+        desc: 'A 3D-printed water lily interface responding to touch through embedded flex sensors. Organic form meets computation — each petal translates pressure into digital signal.',
+        tags: ['3D Print', 'Tangible HCI', 'Morphing Matter'],
+        images: [
+          'imagesandvid/p1/week_6 (2).jpeg',
+          'imagesandvid/p1/waterlily.jpeg',
+          'imagesandvid/p1/water.jpeg',
+          'imagesandvid/p1/waterlily1.jpeg'
+        ]
+      },
+      {
+        num: '002', year: '2026', category: 'Mixed Reality',
+        title: 'AR Pokémon Card Game',
+        desc: 'Computer vision markers on physical trading cards summon interactive 3D Pokémon in augmented reality. The card becomes a spatial controller.',
+        tags: ['Mixed Reality', 'Unity', 'Computer Vision'],
+        images: [
+          'imagesandvid/p2/img 1.jpeg',
+          'imagesandvid/p2/Untitled design.gif'
+        ]
+      },
+      {
+        num: '003', year: '2025', category: 'Interactive ML',
+        title: 'Shadow Puppets',
+        desc: 'An ML classifier trained on hand silhouettes controls generative visuals in real-time. Interaction without touching — just shadow, light, and gesture.',
+        tags: ['Interactive ML', 'Gesture', 'Generative'],
+        images: [
+          'imagesandvid/p3/image.png',
+          'imagesandvid/p3/image (1).png',
+          'imagesandvid/p3/artifactsportfolioimagesandvidp3image.png.gif',
+          'imagesandvid/p3/demo-ezgif.com-video-to-gif-converter (1).gif'
+        ]
+      },
+      {
+        num: '004', year: '2026', category: 'Biodesign',
+        title: 'BioSignal Interface',
+        desc: 'Exploring GSR, HRV, and EMG as expressive input channels. Biosignals reframed as design material — the body becomes the interface layer.',
+        tags: ['Biosensing', 'Bioelectronics', 'Speculative'],
+        images: [
+          'imagesandvid/p4/Rotate Radial Dial to control the inputs.png',
+          'imagesandvid/p4/img1.jpeg',
+          'imagesandvid/p4/img2.jpeg',
+          'imagesandvid/p4/final poster_page-0001.jpg',
+          'imagesandvid/p4/WhatsApp Image 2026-05-02 at 5.28.40 PM.jpeg'
+        ]
+      },
+      {
+        num: '005', year: '2026', category: 'Living Materials',
+        title: 'Mycelium Interface',
+        desc: 'A bio-responsive surface grown from fungal networks. Electrical resistance changes in living mycelium translate touch and pressure into computational signal.',
+        tags: ['Living Matter', 'Biodesign', 'Sensing'],
+        images: [
+          'imagesandvid/p5/p5_base.png',
+          'imagesandvid/p5/p5_hover.png'
+        ]
+      },
+      {
+        num: '006', year: '2026', category: 'Wearable',
+        title: 'Haptic Skin',
+        desc: 'Soft bioelectronic patches render spatial information as distributed haptic feedback on the skin — a new tactile vocabulary for human-computer interaction.',
+        tags: ['Wearable', 'Haptics', 'Bioelectronics'],
+        images: [
+          'imagesandvid/p6/P6 pic 1.jpeg',
+          'imagesandvid/p6/Untitled design (3).png',
+          'imagesandvid/p6/Untitled design (4).png',
+          'imagesandvid/p6/Untitled design (2).gif'
+        ]
+      },
+      {
+        num: '007', year: '2025', category: 'Situated Interaction',
+        title: 'ZoomProMax (Video Calling System)',
+        desc: 'explain explain blahblaah balfjkfjkf.',
+        tags: ['UI Design', 'Generative Theories'],
+        images: [
+          'imagesandvid/p7/3.png',
+          'imagesandvid/p7/Untitled design (3).gif'
+        ]
+      },
+      {
+        num: '008', year: '2025', category: 'VR ADHD Diagnosis',
+        title: 'VR Diagnosis of ADHD',
+        desc: 'explain here',
+        tags: ['Virtual Reality', 'Mental Health', 'ADHD'],
+        images: [
+          'imagesandvid/p8/Screenshot 2026-05-29 182222.png',
+          'imagesandvid/p8/Untitled design (2).gif'
+        ]
+      }
+    ];
+
+    function isGif(src) { return /\.gif(\?|$)/i.test(src); }
+
+    function render(project, idx) {
+      document.title = project.title + ' — Shubham Bhatt';
+      document.getElementById('nav-id').textContent = project.num + ' — ' + project.year;
+      document.getElementById('meta-num').textContent = project.num;
+      document.getElementById('meta-year').textContent = project.year;
+      document.getElementById('meta-cat').textContent = '· ' + project.category;
+      document.getElementById('proj-title').textContent = project.title;
+      document.getElementById('proj-desc').textContent = project.desc;
+
+      // Hero: first image
+      var heroImg = document.getElementById('hero-img');
+      heroImg.src = project.images[0];
+      heroImg.alt = project.title;
+
+      // Tags
+      var tagsEl = document.getElementById('proj-tags');
+      tagsEl.innerHTML = project.tags.map(function(t) {
+        return '<span class="project-tag">' + t + '</span>';
+      }).join('');
+
+      // Gallery: all images
+      var gallery = document.getElementById('gallery');
+      gallery.innerHTML = project.images.map(function(src, i) {
+        return '<div class="gallery-item" data-src="' + src + '">' +
+          '<img src="' + src + '" alt="' + project.title + ' ' + (i+1) + '" loading="lazy">' +
+          '</div>';
+      }).join('');
+
+      // Lightbox
+      gallery.querySelectorAll('.gallery-item').forEach(function(item) {
+        item.addEventListener('click', function() {
+          document.getElementById('lb-img').src = item.dataset.src;
+          document.getElementById('lightbox').classList.add('open');
+        });
+      });
+
+      // Prev / Next
+      var total = PROJECTS.length;
+      var prevIdx = (idx - 1 + total) % total;
+      var nextIdx = (idx + 1) % total;
+      document.getElementById('btn-prev').href = 'project.html?id=' + (prevIdx + 1);
+      document.getElementById('btn-prev').querySelector ? null : null;
+      document.getElementById('btn-next').href = 'project.html?id=' + (nextIdx + 1);
+
+      var prevTxt = document.getElementById('btn-prev');
+      var nextTxt = document.getElementById('btn-next');
+      prevTxt.innerHTML = '← ' + PROJECTS[prevIdx].num + ' ' + PROJECTS[prevIdx].title;
+      nextTxt.innerHTML = PROJECTS[nextIdx].num + ' ' + PROJECTS[nextIdx].title + ' →';
+    }
+
+    // Read ?id= from URL
+    var params = new URLSearchParams(window.location.search);
+    var id = parseInt(params.get('id'), 10) || 1;
+    id = Math.min(Math.max(id, 1), PROJECTS.length);
+    render(PROJECTS[id - 1], id - 1);
+
+    // Lightbox close
+    document.getElementById('lb-close').addEventListener('click', function() {
+      document.getElementById('lightbox').classList.remove('open');
+    });
+    document.getElementById('lightbox').addEventListener('click', function(e) {
+      if (e.target === this) this.classList.remove('open');
+    });
+
+    // Custom cursor
+    var dot = document.getElementById('cursor-dot');
+    var ring = document.getElementById('cursor-ring');
+    var mx = 0, my = 0, rx = 0, ry = 0;
+    document.addEventListener('mousemove', function(e) { mx = e.clientX; my = e.clientY; });
+    (function loop() {
+      dot.style.left = mx + 'px'; dot.style.top = my + 'px';
+      rx += (mx - rx) * 0.15; ry += (my - ry) * 0.15;
+      ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
+      requestAnimationFrame(loop);
+    })();
+  </script>
+</body>
+</html>
