@@ -153,7 +153,18 @@
       align-items: center; justify-content: center;
     }
     .lightbox.open { display: flex; }
-    .lightbox-img { max-width: 90vw; max-height: 90vh; object-fit: contain; }
+    .lightbox-img,
+    .lightbox-video {
+      max-width: 90vw;
+      max-height: 90vh;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+    }
+
+    .lightbox-video {
+      display: none;
+    }
     .lightbox-close {
       position: absolute; top: 1.5rem; right: 2rem;
       font-family: 'Space Mono', monospace; font-size: 11px;
@@ -219,29 +230,68 @@
     </div>
   </div>
 
-  <div class="lightbox" id="lightbox">
+  <!-- <div class="lightbox" id="lightbox">
     <button class="lightbox-close" id="lb-close">Close ✕</button>
     <img class="lightbox-img" id="lb-img" src="" alt="">
-  </div>
+  </div> -->
+  <div class="lightbox" id="lightbox">
+  <button class="lightbox-close" id="lb-close">Close ✕</button>
+
+  <img class="lightbox-img" id="lb-img" src="" alt="">
+
+  <video
+    class="lightbox-video"
+    id="lb-video"
+    controls
+    autoplay
+    muted
+    loop
+    playsinline
+    preload="metadata"
+  ></video>
+</div>
 
   <script>
     var PROJECTS = [
       {
         num: '001', year: '2026', category: 'Tangible Interface',
         title: 'Bloom : Water Lily',
-        desc: 'A 3D-printed water lily interface responding to touch through embedded flex sensors. Organic form meets computation — each petal translates pressure into digital signal.',
+        desc: 'A 3D printed interface made of independent element which connect and interlock with each other to create a manipulable artwork. The petals can be closed or opened by the audience',
         tags: ['3D Print', 'Tangible HCI', 'Morphing Matter'],
         images: [
           'imagesandvid/p1/week_6 (2).jpeg',
           'imagesandvid/p1/waterlily.jpeg',
           'imagesandvid/p1/water.jpeg',
           'imagesandvid/p1/waterlily1.jpeg'
-        ]
+        ],
+        
+        
       },
       {
-        num: '002', year: '2026', category: 'Mixed Reality',
+        num: '002', year: '2026', category: 'Situated Interaction',
+        title: 'La Suite numérique -> SuiteFlow',
+        desc: 'Proposed redesign of La Suite numérique - presented a temporal tool for managing workflows, cross-workspace structuring and data transfer as well as workspace personalization',
+        tags: ['Re-Design','UI Design', 'Generative Theories'],
+        images: [
+          'imagesandvid/p7/1.png',
+          'imagesandvid/p7/Slides video Best size.mp4',
+          
+          'imagesandvid/p7/1 (3).png',
+          'imagesandvid/p7/1 (4).png',
+          'imagesandvid/p7/1 (5).png',
+          'imagesandvid/p7/1 (1).png',
+          'imagesandvid/p7/1 (2).png',
+          'imagesandvid/p7/2 (1).png',
+          'imagesandvid/p7/2 (2).png',
+          'imagesandvid/p7/2 (3).png',
+          'imagesandvid/p7/2 (4).png',
+        ]
+
+      },
+      {
+        num: '003', year: '2026', category: 'Mixed Reality',
         title: 'AR Pokémon Card Game',
-        desc: 'Computer vision markers on physical trading cards summon interactive 3D Pokémon in augmented reality. The card becomes a spatial controller.',
+        desc: 'An AR version of Pokémon Card game where you can summon and interact with 3D Pokemons in augemented reality. You can fight, catch, heal and evolve Pokémons using hand gestures and Pokémon cards.',
         tags: ['Mixed Reality', 'Unity', 'Computer Vision'],
         images: [
           'imagesandvid/p2/img 1.jpeg',
@@ -249,10 +299,10 @@
         ]
       },
       {
-        num: '003', year: '2025', category: 'Interactive ML',
+        num: '004', year: '2025', category: 'Interactive ML',
         title: 'Shadow Puppets',
-        desc: 'An ML classifier trained on hand silhouettes controls generative visuals in real-time. Interaction without touching — just shadow, light, and gesture.',
-        tags: ['Interactive ML', 'Gesture', 'Generative'],
+        desc: 'This project tries to take this simple game further where Interactive Machine Learning can be utilized to teach kids gestures and explore and understand the behaviour of AI (model auditing).',
+        tags: ['Interactive ML', 'Gesture Recognition'],
         images: [
           'imagesandvid/p3/image.png',
           'imagesandvid/p3/image (1).png',
@@ -261,10 +311,10 @@
         ]
       },
       {
-        num: '004', year: '2026', category: 'Biodesign',
-        title: 'BioSignal Interface',
-        desc: 'Exploring GSR, HRV, and EMG as expressive input channels. Biosignals reframed as design material — the body becomes the interface layer.',
-        tags: ['Biosensing', 'Bioelectronics', 'Speculative'],
+        num: '005', year: '2026', category: 'Interactive System Design',
+        title: 'FoodCharm',
+        desc: 'A keychain centered food sharing system that connects nearby donors to distribute food quickly to the community',
+        tags: ['Interactive System','Product Design','User Experience Research'],
         images: [
           'imagesandvid/p4/Rotate Radial Dial to control the inputs.png',
           'imagesandvid/p4/img1.jpeg',
@@ -274,20 +324,20 @@
         ]
       },
       {
-        num: '005', year: '2026', category: 'Living Materials',
-        title: 'Mycelium Interface',
-        desc: 'A bio-responsive surface grown from fungal networks. Electrical resistance changes in living mycelium translate touch and pressure into computational signal.',
-        tags: ['Living Matter', 'Biodesign', 'Sensing'],
+        num: '006', year: '2026', category: 'User Interface Design',
+        title: 'Plurivent',
+        desc: 'A collaborative event planning app ensuring sturctured planning, fair paritcipation and conflict resolution ',
+        tags: ['UI Design','App Design','Mobile Application'],
         images: [
           'imagesandvid/p5/p5_base.png',
           'imagesandvid/p5/p5_hover.png'
         ]
       },
       {
-        num: '006', year: '2026', category: 'Wearable',
-        title: 'Haptic Skin',
-        desc: 'Soft bioelectronic patches render spatial information as distributed haptic feedback on the skin — a new tactile vocabulary for human-computer interaction.',
-        tags: ['Wearable', 'Haptics', 'Bioelectronics'],
+        num: '007', year: '2026', category: 'Game Design',
+        title: 'Illuminate',
+        desc: 'A new version of Minesweeper called “ILLUMINATE”. This game is inspired by the Hindu festival Diwali which is the festival of lights.',
+        tags: ['Game Design'],
         images: [
           'imagesandvid/p6/P6 pic 1.jpeg',
           'imagesandvid/p6/Untitled design (3).png',
@@ -295,7 +345,7 @@
           'imagesandvid/p6/Untitled design (2).gif'
         ]
       },
-      {
+      /* {
         num: '007', year: '2025', category: 'Situated Interaction',
         title: 'ZoomProMax (Video Calling System)',
         desc: 'explain explain blahblaah balfjkfjkf.',
@@ -304,11 +354,11 @@
           'imagesandvid/p7/3.png',
           'imagesandvid/p7/Untitled design (3).gif'
         ]
-      },
+      }, */
       {
         num: '008', year: '2025', category: 'VR ADHD Diagnosis',
         title: 'VR Diagnosis of ADHD',
-        desc: 'explain here',
+        desc: 'VR game for diagnosis and support for individulas with AHDH. The game provides emotional support, immediate feedback and distractions in a controlled environment.',
         tags: ['Virtual Reality', 'Mental Health', 'ADHD'],
         images: [
           'imagesandvid/p8/Screenshot 2026-05-29 182222.png',
@@ -318,6 +368,10 @@
     ];
 
     function isGif(src) { return /\.gif(\?|$)/i.test(src); }
+
+    function isVideo(src) {
+  return /\.(mp4|webm|ogg)(\?|$)/i.test(src);
+}
 
     function render(project, idx) {
       document.title = project.title + ' — Shubham Bhatt';
@@ -341,19 +395,85 @@
 
       // Gallery: all images
       var gallery = document.getElementById('gallery');
-      gallery.innerHTML = project.images.map(function(src, i) {
+      /* gallery.innerHTML = project.images.map(function(src, i) {
         return '<div class="gallery-item" data-src="' + src + '">' +
           '<img src="' + src + '" alt="' + project.title + ' ' + (i+1) + '" loading="lazy">' +
           '</div>';
-      }).join('');
+      }).join(''); */
+
+      gallery.innerHTML = project.images.map(function(src, i) {
+
+      if (isVideo(src)) {
+
+        return '<div class="gallery-item" data-src="' + src + '" data-type="video">' +
+          '<video src="' + src + '" muted loop autoplay playsinline preload="metadata"></video>' +
+          '<div class="gallery-video-indicator">Video · Tap to open</div>' +
+          '</div>';
+
+      }
+
+      return '<div class="gallery-item" data-src="' + src + '" data-type="image">' +
+        '<img src="' + src + '" alt="' + project.title + ' ' + (i+1) + '" loading="lazy">' +
+        '</div>';
+
+    }).join('');
 
       // Lightbox
-      gallery.querySelectorAll('.gallery-item').forEach(function(item) {
+      /* gallery.querySelectorAll('.gallery-item').forEach(function(item) {
         item.addEventListener('click', function() {
           document.getElementById('lb-img').src = item.dataset.src;
           document.getElementById('lightbox').classList.add('open');
         });
-      });
+      }); */
+
+      gallery.querySelectorAll('.gallery-item').forEach(function(item) {
+
+  item.addEventListener('click', function() {
+
+    var src = item.dataset.src;
+    var type = item.dataset.type;
+
+    var lightbox = document.getElementById('lightbox');
+    var lbImg = document.getElementById('lb-img');
+    var lbVideo = document.getElementById('lb-video');
+
+    if (type === 'video') {
+
+      // Hide image
+      lbImg.style.display = 'none';
+      lbImg.removeAttribute('src');
+
+      // Show video
+      lbVideo.style.display = 'block';
+      lbVideo.src = src;
+      lbVideo.currentTime = 0;
+      lbVideo.load();
+
+      // Open lightbox
+      lightbox.classList.add('open');
+
+      // Play video
+      lbVideo.play().catch(function() {});
+
+    } else {
+
+      // Stop previous video
+      lbVideo.pause();
+      lbVideo.removeAttribute('src');
+      lbVideo.load();
+      lbVideo.style.display = 'none';
+
+      // Show image
+      lbImg.style.display = 'block';
+      lbImg.src = src;
+
+      // Open lightbox
+      lightbox.classList.add('open');
+    }
+
+  });
+
+});
 
       // Prev / Next
       var total = PROJECTS.length;

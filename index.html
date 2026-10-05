@@ -3,8 +3,9 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
-<title>Shubham Bhatt — HCI Portfolio</title>
-<meta name="description" content="MSc HCI · Paris-Saclay · Designing at the boundary between life and computation." />
+<title>Shubham Bhatt -  Portfolio</title>
+<!-- <meta name="description" content="MSc HCI · Paris-Saclay " />
+ -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=VT323&family=Noto+Serif+Devanagari:wght@400;700&display=swap" rel="stylesheet">
@@ -28,7 +29,7 @@
   --c-scanline: rgba(0,0,0,0.08);
   --c-nav-bg: rgba(5,5,5,0.78);
   --c-nav-border: rgba(91,118,110,0.4);
-  --c-badge-bg: rgba(5,5,5,0.7);
+  --c-badge-bg: rgba(5,5,5,0.8);
   --c-overlay-bot: rgba(5,5,5,0.95);
   --c-overlay-mid: rgba(5,5,5,0.4);
   --c-tl-border: rgba(91,118,110,0.5);
@@ -284,7 +285,7 @@ nav.site.scrolled {
 .hero-work .img-base { transform: scale(1); }
 
 /* ── Badge (always visible) ── */
-.hero-work-badge { position: absolute; top: 0.75rem; left: 0.75rem; font-family: 'Space Mono', monospace; font-size: 9px; letter-spacing: 0.2em; color: var(--bone-dim); background: var(--c-badge-bg); padding: 0.15rem 0.4rem; z-index: 3; }
+.hero-work-badge { position: absolute; top: 0.0rem; left: 0.0rem; font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.2em; color: var(--bone-dim); background: var(--c-badge-bg); padding: 0.15rem 0.4rem; z-index: 3; }
 
 /* ── Expand panel — only reveals on the big active card ── */
 .hero-work-expand {
@@ -820,8 +821,7 @@ body { transition: background 400ms ease; }
       <span>Portfolio · 2026</span>
     </div>
     <div class="col r">
-      <span style="color:var(--blue-soft)">Human-AI Interaction Design (and beyond)</span>
-      <span>Paris-Saclay</span>
+      <span style="color:var(--blue-soft)">Human-Computer Interaction & Design</span>
     </div>
   </div>
   <div class="load-mid">
@@ -830,7 +830,7 @@ body { transition: background 400ms ease; }
       <span class="num" id="load-num">0</span>
       <span class="pct">%</span>
     </div>
-    <div class="load-tag" style="opacity:0.6">Shubham <em style="color:var(--pink);font-style:italic">Bhatt</em></div>
+    
   </div>
   <div class="load-bottom">
     <div class="load-bar-wrap"><div class="load-bar" id="load-bar"></div></div>
@@ -857,16 +857,12 @@ body { transition: background 400ms ease; }
   <ul class="nav-links">
     <li><a href="#about" class="nav-link" data-magnet="0.35"><span class="idx">01</span><span>About</span></a></li>
     <li><a href="#projects" class="nav-link" data-magnet="0.35"><span class="idx">02</span><span>Projects</span></a></li>
- <!--    <li><a href="#manifesto" class="nav-link" data-magnet="0.35"><span class="idx">03</span><span>Manifesto</span></a></li> -->
-    <!-- <li><a href="#field" class="nav-link" data-magnet="0.35"><span class="idx">04</span><span>Field</span></a></li>
-    <li><a href="#skills" class="nav-link" data-magnet="0.35"><span class="idx">05</span><span>Skills</span></a></li> -->
     <li><a href="#contact" class="nav-link" data-magnet="0.35"><span class="idx">06</span><span>Contact</span></a></li>
   </ul>
   <div style="display:flex;align-items:center;gap:1.25rem;">
     <button id="theme-toggle" aria-label="Toggle theme" class="theme-toggle">◐ </button>
     <div class="nav-clock">
       <span class="pulse-dot" aria-hidden="true"></span>
-      <!-- <span id="paris-time">--:-- PAR</span> -->
     </div>
   </div>
 </nav>
@@ -876,10 +872,10 @@ body { transition: background 400ms ease; }
   <canvas id="intro-ripple" aria-hidden="true"></canvas>
   <div class="hero-corner-l">
    <!--  <span style="color:var(--mint)">Index — 00</span> -->
-    <span>Portfolio · 2026</span>
+   <!--  <span>Portfolio · 2026</span> -->
   </div>
   <div class="hero-corner-r">
-    <span style="color:var(--blue-soft)">Paris / Delhi</span>
+    <!-- <span style="color:var(--blue-soft)">Paris / Delhi</span> -->
 <!--     <span>48.85°N · 2.35°E</span> -->
   </div>
   <div id="intro-content">
@@ -894,23 +890,31 @@ body { transition: background 400ms ease; }
   </div>
   <!-- <div class="intro-tag">HCI · Paris-Saclay · 2026</div> -->
   <div class="intro-scroll-line" aria-hidden="true"></div>
-  <div class="scroll-indicator"><span class="line"></span>Scroll · 00 → 03</div>
+  <!-- <div class="scroll-indicator"><span class="line"></span>Scroll · 00 → 03</div> -->
 </section>
 
 <!-- About -->
 <section id="about">
   <div class="about-header reveal">
     <div class="about-header-l">
-      <span class="label">01 · About</span>
-      <span class="sub">HCI Researcher · Designer</span>
+      <!-- <span class="label">01 · About</span> -->
+      
+      <div class="hero-eyebrow"><span class="dash"></span>01 · About</div>
+      
+
+      <!-- <span class="sub">HCI Researcher · Designer</span> -->
     </div>
-    <h2>Designing <br> for <span class="blue"> Humans </span><br> and <span class="pink">Beyond!</span></h2>
+    <br>
+    <h2>Designing system which  <span class="pink">guide users  </span> not control them</span></h2>
   </div>
   <div class="about-grid">
+    
     <div class="about-prose reveal">
-      <p><span class="dropcap">I'm</span> a computer science graduate specializing in <em class="bone"> AI and Human–Computer Interaction </em>, with a focus on building systems that are not just intelligent, but meaningful to people. My work explores the intersection of machine learning, design, and human cognition. </p>
-      <p class="dim">Currently completing MSc HCI at Paris-Saclay with a research internship at INRIA Ex-Situ (supervised by Wendy Mackay). Previously: BTech Computer Science with specialisation in AI/ML.</p>
-      <p>I believe the most interesting computing happens not on screens but <em class="mint">in tanglible interfaces that respond and morph </em> to human input and the environment </p>
+      <p><span class="dropcap">I'm</span> a Master's student of Human-Computer Interaction at Université Paris-Sacaly </em>, with a focus on designing systems which guide the users, 
+        not exploit or control them. Furthermore, I am also interested in BioHCI, Tangible Interaction and More-Than-Human Design.</p>
+
+        <p> I worked under the supervision of Prof. Wendy Mackay at Ex Situ (Inria) during my research internship in summer 2026.</p>
+
       <div class="tags">
         <span class="tag">Tangible Interaction</span>
         <span class="tag">Human-AI Interaction</span>
@@ -931,7 +935,7 @@ body { transition: background 400ms ease; }
   <div id="hero-lens" aria-hidden="true"></div>
   <div class="hero-content">
     <div class="hero-eyebrow"><span class="dash"></span>02 · Projects </div>
-    <h2 class="projects-heading">Systems that<em class="c-mint"> think, respond, </em> and <em class="c-pink"> adapt.</em></h2>
+    <h2 class="projects-heading"> Systems that focus on <em class="c-pink">how users interact</em> with technology</h2>
 
     <!-- Mosaic — expand on hover / click -->
     <div class="hero-works-mosaic">
@@ -961,7 +965,8 @@ body { transition: background 400ms ease; }
           <div class="hero-work-expand">
             <div class="expand-num">001 — 2026</div>
             <div class="expand-title">Bloom : Water Lily</div>
-            <div class="expand-desc">A 3D-printed water lily interface responding to touch through embedded flex sensors. Organic form meets computation — each petal translates pressure into digital signal.</div>
+            <div class="expand-desc">A 3D printed interface made of independent element which connect and 
+              interlock with each other to create a manipulable artwork. The petals can be closed or opened by the audience</div>
             <div class="expand-tags">
               <span class="expand-tag">3D Print</span><span class="expand-tag">Tangible HCI</span><span class="expand-tag">Morphing Matter</span>
             </div>
@@ -969,13 +974,29 @@ body { transition: background 400ms ease; }
         </div>
 
         <div class="hero-work">
-          <img class="img-base"  src="imagesandvid/p2/img 1.jpeg?w=700&q=80&fit=crop" alt="AR — base">
-          <img class="img-hover" src="imagesandvid/p2/Untitled design.gif?w=700&q=80&fit=crop" alt="AR — particles">
-          <div class="hero-work-badge">002 · Mixed Reality</div>
+          <img class="img-base"  src="imagesandvid/p7/Untitled design (2).png?w=700&q=80&fit=crop" alt="Root Network — base">
+          <img class="img-hover" src="imagesandvid/p7/slides.gif" alt="Root Network — detail">
+          <div class="hero-work-badge">002 · Situated Interaction</div>
           <div class="hero-work-expand">
             <div class="expand-num">002 — 2026</div>
+            <div class="expand-title">La Suite numérique</div>
+            <div class="expand-desc">Proposed redesign of La Suite numérique - presented a temporal tool for managing workflows, 
+              cross-workspace structuring and data transfer as well as workspace personalization</div>
+            <div class="expand-tags">
+              <span class="expand-tag">Re-Design</span><span class="expand-tag">UI Design</span><span class="expand-tag">Generative Theories</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-work">
+          <img class="img-base"  src="imagesandvid/p2/img 1.jpeg?w=700&q=80&fit=crop" alt="AR — base">
+          <img class="img-hover" src="imagesandvid/p2/Untitled design.gif?w=700&q=80&fit=crop" alt="AR — particles">
+          <div class="hero-work-badge">003 · Mixed Reality</div>
+          <div class="hero-work-expand">
+            <div class="expand-num">003 — 2026</div>
             <div class="expand-title">AR Pokémon Card Game</div>
-            <div class="expand-desc">Computer vision markers on physical trading cards summon interactive 3D Pokémon in augmented reality. The card becomes a spatial controller.</div>
+            <div class="expand-desc">An AR version of Pokémon Card game where you can summon and interact with 3D Pokemons in augemented reality. 
+              You can fight, catch, heal and evolve Pokémons using hand gestures and Pokémon cards. </div>
             <div class="expand-tags">
               <span class="expand-tag">Mixed Reality</span><span class="expand-tag">Unity</span><span class="expand-tag">Computer Vision</span>
             </div>
@@ -985,46 +1006,65 @@ body { transition: background 400ms ease; }
         <div class="hero-work">
           <img class="img-base"  src="imagesandvid/p3/image.png?w=700&q=80&fit=crop" alt="Shadow Puppets — base">
           <img class="img-hover" src="imagesandvid/p3/artifactsportfolioimagesandvidp3image.png.gif?w=700&q=80&fit=crop" alt="Shadow Puppets — process">
-          <div class="hero-work-badge">003 · Interactive ML</div>
+          <div class="hero-work-badge">004 · Interactive ML</div>
           <div class="hero-work-expand">
-            <div class="expand-num">003 — 2025</div>
+            <div class="expand-num">004 — 2025</div>
             <div class="expand-title">Shadow Puppets</div>
-            <div class="expand-desc">An ML classifier trained on hand silhouettes controls generative visuals in real-time. Interaction without touching — just shadow, light, and gesture.</div>
+            <div class="expand-desc">This project tries to take this simple game further where Interactive Machine Learning can be utilized to 
+              teach kids gestures and explore and understand the behaviour of AI (model auditing).</div>
             <div class="expand-tags">
-              <span class="expand-tag">Interactive ML</span><span class="expand-tag">Gesture</span><span class="expand-tag">Generative</span>
+              <span class="expand-tag">Interactive ML</span><span class="expand-tag">Gesture Recognition</span>
             </div>
           </div>
         </div>
 
-        <div class="hero-work">
+       <!--  <div class="hero-work">
           <img class="img-base"  src="imagesandvid/p4/img1.jpeg?w=700&q=80&fit=crop" alt="base">
           <img class="img-hover" src="imagesandvid/p4/Rotate Radial Dial to control the inputs.png?w=700&q=80&fit=crop" alt=" closeup">
           <div class="hero-work-badge">004 · Interactive System Design</div>
           <div class="hero-work-expand">
             <div class="expand-num">004 — 2025</div>
             <div class="expand-title">FoodCharm</div>
-            <div class="expand-desc">Explanation.</div>
+            <div class="expand-desc">A keychain centered food sharing system that connects nearby donors to distribute food quickly to the community</div>
             <div class="expand-tags">
-              <span class="expand-tag">Interactive System</span><span class="expand-tag">User Experience Research</span>
+              <span class="expand-tag">Interactive System</span><span class="expand-tag">Product Design</span><span class="expand-tag">User Experience Research</span>
             </div>
           </div>
-        </div>
+        </div> -->
+        
 
       </div><!-- /row 1 -->
 
       <!-- Row 2 -->
+
+
       <div class="mosaic-row">
+
+
+         <div class="hero-work">
+          <img class="img-base"  src="imagesandvid/p4/img1.jpeg?w=700&q=80&fit=crop" alt="base">
+          <img class="img-hover" src="imagesandvid/p4/Rotate Radial Dial to control the inputs.png?w=700&q=80&fit=crop" alt=" closeup">
+          <div class="hero-work-badge">005 · Interactive System Design</div>
+          <div class="hero-work-expand">
+            <div class="expand-num">005 — 2025</div>
+            <div class="expand-title">FoodCharm</div>
+            <div class="expand-desc">A keychain centered food sharing system that connects nearby donors to distribute food quickly to the community</div>
+            <div class="expand-tags">
+              <span class="expand-tag">Interactive System</span><span class="expand-tag">Product Design</span><span class="expand-tag">User Experience Research</span>
+            </div>
+          </div>
+        </div>
 
         <div class="hero-work">
           <img class="img-base"  src="imagesandvid/p5/p5_base.png?w=700&q=80&fit=crop" alt=" base">
           <img class="img-hover" src="imagesandvid/p5/p5_hover.png?w=700&q=80&fit=crop" alt=" detail">
-          <div class="hero-work-badge">005 · User Interface Design</div>
+          <div class="hero-work-badge">006 · User Interface Design</div>
           <div class="hero-work-expand">
-            <div class="expand-num">005 — 2026</div>
-            <div class="expand-title">Plurivent - Travel Planning App</div>
-            <div class="expand-desc">explain here balah blah </div>
+            <div class="expand-num">006 — 2026</div>
+            <div class="expand-title">Plurivent</div>
+            <div class="expand-desc">A collaborative event planning app ensuring sturctured planning, fair paritcipation and conflict resolution </div>
             <div class="expand-tags">
-              <span class="expand-tag">UI Design</span><span class="expand-tag">Biodesign</span><span class="expand-tag">Mobile Application</span><span class="expand-tag">Mobile Application</span>
+              <span class="expand-tag">UI Design</span><span class="expand-tag">App Design</span><span class="expand-tag">Mobile Application</span>
             </div>
           </div>
         </div>
@@ -1032,20 +1072,21 @@ body { transition: background 400ms ease; }
         <div class="hero-work">
           <img class="img-base"  src="imagesandvid/p6/Untitled design (4).png?w=700&q=80&fit=crop" alt="Haptic Skin — base">
           <img class="img-hover" src="imagesandvid/p6/Untitled design (2).gif?w=700&q=80&fit=crop" alt="Haptic Skin — detail">
-          <div class="hero-work-badge">006 · Game Design</div>
+          <div class="hero-work-badge">007 · Game Design</div>
           <div class="hero-work-expand">
-            <div class="expand-num">006 — 2025</div>
-            <div class="expand-title">Bloom (Diwali Inspired Minesweeper)</div>
-            <div class="expand-desc">Soft bioelectronic patches render spatial information as distributed haptic feedback on the skin — a new tactile vocabulary for human-computer interaction.</div>
+            <div class="expand-num">007 — 2025</div>
+            <div class="expand-title">Illuminate</div>
+            <div class="expand-desc">A new version of Minesweeper called “ILLUMINATE”. 
+              This game is inspired by the Hindu festival Diwali which is the festival of lights.</div>
             <div class="expand-tags">
               <span class="expand-tag">Game Design</span>
             </div>
           </div>
         </div>
 
-        <div class="hero-work">
-          <img class="img-base"  src="imagesandvid/p7/3.png?w=700&q=80&fit=crop" alt="Root Network — base">
-          <img class="img-hover" src="imagesandvid/p7/Untitled design (3).gif?w=700&q=80&fit=crop" alt="Root Network — detail">
+        <!-- <div class="hero-work">
+          <img class="img-base"  src="imagesandvid/p7/Untitled design (2).png?w=700&q=80&fit=crop" alt="Root Network — base">
+          <img class="img-hover" src="imagesandvid/p7/slides.gif" alt="Root Network — detail">
           <div class="hero-work-badge">007 · Situated Interaction</div>
           <div class="hero-work-expand">
             <div class="expand-num">007 — 2025</div>
@@ -1055,7 +1096,7 @@ body { transition: background 400ms ease; }
               <span class="expand-tag">UI Design</span><span class="expand-tag">Generative Theories</span>
             </div>
           </div>
-        </div>
+        </div> -->
 
         <div class="hero-work">
           <img class="img-base"  src="imagesandvid/p8/Screenshot 2026-05-29 182222.png?w=700&q=80&fit=crop" alt="Breath — base">
@@ -1064,9 +1105,10 @@ body { transition: background 400ms ease; }
           <div class="hero-work-expand">
             <div class="expand-num">008 — 2025</div>
             <div class="expand-title">VR Diagnosis of AHDH </div>
-            <div class="expand-desc">explain here</div>
+            <div class="expand-desc">VR game for diagnosis and support for individulas with AHDH. The game provides emotional support, immediate feedback and distractions in 
+              a controlled environment.</div>
             <div class="expand-tags">
-              <span class="expand-tag">Virtual Reality </span><span class="expand-tag">Mental Health</span><span class="expand-tag">ADHD</span>
+              <span class="expand-tag">Virtual Reality</span><span class="expand-tag">Mental Health</span><span class="expand-tag">ADHD</span>
             </div>
           </div>
         </div>
@@ -1246,10 +1288,7 @@ document.addEventListener('DOMContentLoaded', function () {
     var roles = [
       'HCI Researcher',
       'Interaction Designer',
-      'AI Engineer',
-      'Artist',
-      'Bio-Designer',
-      'Creative Technologist'
+      'AI Engineer'
     ];
     var idx = 0;
     var swap = function() {
@@ -1931,8 +1970,8 @@ document.addEventListener('DOMContentLoaded', function () {
       ctx.fillRect(0,c.height-100,c.width,100);
       ctx.fillStyle = document.documentElement.classList.contains('light') ? '#2a5c4a' : '#b5eada';
       ctx.font = '12px "Space Mono", monospace';
-      ctx.fillText('ID: SB-2026-HCI',20,30);
-      ctx.fillText('STATUS: ACTIVE',20,50);
+      /* ctx.fillText('ID: SB-2026-HCI',20,30);
+      ctx.fillText('STATUS: ACTIVE',20,50); */
       ctx.fillText('SHUBHAM BHATT',20,c.height-70);
       ctx.fillText('HCI RESEARCHER',20,c.height-50);
       requestAnimationFrame(render);
