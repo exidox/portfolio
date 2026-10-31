@@ -799,6 +799,66 @@ body { transition: background 400ms ease; }
   0% { height: 0; }
   100% { height: 3rem; }
 }
+
+
+/* ── Stable project grid: preserve the original 4×2 mosaic dimensions ── */
+.hero-works-mosaic {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+  gap: 3px;
+  width: 100%;
+  height: clamp(620px, 82vh, 980px);
+  margin-bottom: 2.5rem;
+  border: 1px solid var(--c-work-border);
+  box-sizing: border-box;
+}
+.hero-works-mosaic .mosaic-row { display: contents; }
+.hero-works-mosaic .hero-work {
+  position: relative;
+  inset: auto;
+  width: auto;
+  height: auto;
+  min-width: 0;
+  min-height: 0;
+  aspect-ratio: auto;
+  overflow: hidden;
+  cursor: pointer;
+  border: 1px solid var(--c-work-border);
+  transition: border-color 180ms ease;
+}
+.hero-works-mosaic .hero-work .img-base {
+  opacity: 1;
+  transform: scale(1);
+  transition: transform 350ms ease;
+}
+.hero-works-mosaic .hero-work .img-hover { display: none; }
+.hero-works-mosaic .hero-work .hero-work-expand { display: none; }
+.hero-works-mosaic .hero-work:hover .img-base,
+.hero-works-mosaic .hero-work:focus-visible .img-base { transform: scale(1.035); }
+.hero-works-mosaic .hero-work:hover,
+.hero-works-mosaic .hero-work:focus-visible { border-color: var(--mint); outline: none; }
+.hero-works-mosaic .hero-work::after {
+  content: 'VIEW PROJECT ↗';
+  position: absolute;
+  right: 0.55rem;
+  bottom: 0.55rem;
+  z-index: 4;
+  padding: 0.3rem 0.45rem;
+  background: rgba(5,5,5,0.78);
+  color: var(--bone);
+  font-family: 'Space Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  opacity: 0;
+  transition: opacity 180ms ease;
+}
+.hero-works-mosaic .hero-work:hover::after,
+.hero-works-mosaic .hero-work:focus-visible::after { opacity: 1; }
+@media (max-width: 767px) {
+  .hero-works-mosaic .hero-work::after { opacity: 1; font-size: 8px; }
+}
+
 </style>
 </head>
 <body>
@@ -937,23 +997,8 @@ body { transition: background 400ms ease; }
     <div class="hero-eyebrow"><span class="dash"></span>02 · Projects </div>
     <h2 class="projects-heading"> Systems that focus on <em class="c-pink">how users interact</em> with technology</h2>
 
-    <!-- Mosaic — expand on hover / click -->
+    <!-- Project grid — select a card to open its project page -->
     <div class="hero-works-mosaic">
-
-      <!-- Stage: big left preview, driven by JS -->
-      <div class="mosaic-stage" aria-hidden="true">
-        <img class="stage-img" src="" alt="">
-        <div class="hero-work-badge stage-badge"></div>
-        <button class="stage-arrow stage-arrow--prev" aria-label="Previous image">&#8592;</button>
-        <button class="stage-arrow stage-arrow--next" aria-label="Next image">&#8594;</button>
-        <div class="stage-dots"></div>
-        <div class="hero-work-expand">
-          <div class="expand-num"></div>
-          <div class="expand-title"></div>
-          <div class="expand-desc"></div>
-          <div class="expand-tags"></div>
-        </div>
-      </div>
 
       <!-- Row 1 -->
       <div class="mosaic-row">
@@ -1115,16 +1160,6 @@ body { transition: background 400ms ease; }
 
       </div><!-- /row 2 -->
 
-      <!-- Info caption box — inside mosaic, pinned to bottom, driven by JS -->
-      <div class="mosaic-info" aria-live="polite">
-        <div class="info-num"></div>
-        <div class="info-body">
-          <div class="info-title"></div>
-          <div class="info-desc"></div>
-          <div class="info-tags"></div>
-        </div>
-      </div>
-
     </div><!-- /mosaic -->
 
     
@@ -1148,7 +1183,10 @@ body { transition: background 400ms ease; }
         <a href="mailto:shubham2003bhatt@gmail.com" class="contact-link"><span class="lbl">Email</span><span class="addr">shubham2003bhatt@gmail.com</span><span class="arr">↗</span></a>
         <a href="https://www.linkedin.com/in/shubham-bhatt-ai-n-design/" class="contact-link" target="_blank" rel="noopener"><span class="lbl">LinkedIn</span><span class="addr">linkedin.com/in/shubham-bhatt-ai-n-design</span><span class="arr">↗</span></a>
         <!-- <a href="https://github.com/shubhambhatt" class="contact-link" target="_blank" rel="noopener"><span class="lbl">GitHub</span><span class="addr">github.com/shubhambhatt</span><span class="arr">↗</span></a> -->
-        <a href="#" class="contact-link" onclick="return false"><span class="lbl">CV / Portfolio PDF</span><span class="addr">Download · 2026</span><span class="arr">↗</span></a>
+        <a href="imagesandvid/SHUBHAM BHATT resume 2026 job applcation.pdf"   class="contact-link" download="imagesandvid/SHUBHAM BHATT resume 2026 job applcation.pdf"> <span class="lbl">Resume</span>
+  <span class="addr">Download · 2026</span>
+  <span class="arr">↗</span>
+</a>
       </div>
     </div>
     <div class="badge-wrap reveal">
@@ -1476,219 +1514,29 @@ document.addEventListener('DOMContentLoaded', function () {
     el.addEventListener('mouseleave', function() { tx = 0; ty = 0; cancelAnimationFrame(rafId); rafId = requestAnimationFrame(loop); });
   });
 
-  // ─── Mosaic: stage + fixed strip layout ──────────────────
+  // ─── Project cards: stable click-through grid ─────────────────
   (function() {
     var mosaic = document.querySelector('.hero-works-mosaic');
     if (!mosaic) return;
-    var stage      = mosaic.querySelector('.mosaic-stage');
-    var stageImg   = stage.querySelector('.stage-img');
-    var stageBadge = stage.querySelector('.stage-badge');
-    var stageDots  = stage.querySelector('.stage-dots');
-    var arrowPrev  = stage.querySelector('.stage-arrow--prev');
-    var arrowNext  = stage.querySelector('.stage-arrow--next');
-    var infoPanel  = document.querySelector('.mosaic-info');
-    var stageImages = [], stageImgIdx = 0, autoAdvTimer = null;
 
-    function isAnimated(src) {
-      return /\.gif(\?|$|&)/i.test(src) || /\.webm(\?|$|&)/i.test(src) || /\.mp4(\?|$|&)/i.test(src);
-    }
-    var infoNum   = infoPanel.querySelector('.info-num');
-    var infoTitle = infoPanel.querySelector('.info-title');
-    var infoDesc  = infoPanel.querySelector('.info-desc');
-    var infoTags  = infoPanel.querySelector('.info-tags');
     var cards = Array.from(mosaic.querySelectorAll('.hero-work'));
-    var n = cards.length;
-    var COLS = 4, ROWS = 2, GAP = 3;
-    var INFO_H = 104; // matches .mosaic-info height in CSS
-    var activeIdx = -1, inStrip = false;
-
-    function setRect(el, r, animate) {
-      if (!animate) el.style.transition = 'none';
-      el.style.left = r.x + 'px'; el.style.top = r.y + 'px';
-      el.style.width = r.w + 'px'; el.style.height = r.h + 'px';
-      if (!animate) requestAnimationFrame(function() { el.style.transition = ''; });
-    }
-
-    function calcDefault() {
-      var W = mosaic.offsetWidth, H = mosaic.offsetHeight;
-      var cw = (W - GAP * (COLS - 1)) / COLS;
-      var rh = (H - GAP * (ROWS - 1)) / ROWS;
-      return cards.map(function(_, i) {
-        return { x: (i % COLS) * (cw + GAP), y: Math.floor(i / COLS) * (rh + GAP), w: cw, h: rh };
-      });
-    }
-
-    function calcStrip() {
-      var W = mosaic.offsetWidth, H = mosaic.offsetHeight - INFO_H - GAP;
-      var bigW = Math.round(W * 0.75) - GAP;
-      var sW = W - bigW - GAP;
-      var sH = (H - GAP * (n - 1)) / n;
-      return {
-        stageRect: { x: 0, y: 0, w: bigW, h: H },
-        cards: cards.map(function(_, i) {
-          return { x: bigW + GAP, y: i * (sH + GAP), w: sW, h: sH };
-        })
-      };
-    }
-
-    function applyDefault(animate) {
-      calcDefault().forEach(function(r, i) { setRect(cards[i], r, animate); });
-    }
-    function applyStrip(animate) {
-      var s = calcStrip();
-      setRect(stage, s.stageRect, animate);
-      s.cards.forEach(function(r, i) { setRect(cards[i], r, animate); });
-    }
-    function positionStageOnly() {
-      // Sets the stage rect without touching card positions
-      setRect(stage, calcStrip().stageRect, false);
-    }
-
-    function setCarouselImage(i) {
-      stageImgIdx = (i + stageImages.length) % stageImages.length;
-      stageImg.src = stageImages[stageImgIdx];
-      stageDots.querySelectorAll('.stage-dot').forEach(function(d, j) {
-        d.classList.toggle('active', j === stageImgIdx);
-      });
-    }
-
-    function updateStage(idx) {
-      clearTimeout(autoAdvTimer);
-      var card = cards[idx];
-      var base  = card.querySelector('.img-base').src;
-      var hover = card.querySelector('.img-hover').src;
-      var same  = (base === hover);
-      var hoverAnimated = isAnimated(hover);
-
-      if (hoverAnimated) {
-        // GIF/video: jump straight to it; base available via arrow
-        stageImages = same ? [hover] : [hover, base];
-      } else {
-        // Static images: start on base, auto-advance to hover after 3s
-        stageImages = same ? [base] : [base, hover];
-      }
-
-      stageImgIdx = 0;
-      stageImg.src = stageImages[0];
-
-      // Build dots
-      stageDots.innerHTML = stageImages.map(function(_, j) {
-        return '<span class="stage-dot' + (j === 0 ? ' active' : '') + '"></span>';
-      }).join('');
-      // Arrows only when 2+ images
-      arrowPrev.style.display = stageImages.length > 1 ? '' : 'none';
-      arrowNext.style.display = stageImages.length > 1 ? '' : 'none';
-
-      // Auto-advance for static images: wait 3s then show hover
-      if (!hoverAnimated && stageImages.length > 1) {
-        autoAdvTimer = setTimeout(function() {
-          if (activeIdx === idx) setCarouselImage(1);
-        }, 3000);
-      }
-
-      stageBadge.textContent = card.querySelector('.hero-work-badge').textContent;
-      // Info panel
-      var exp = card.querySelector('.hero-work-expand');
-      infoNum.textContent   = exp.querySelector('.expand-num').textContent;
-      infoTitle.textContent = exp.querySelector('.expand-title').textContent;
-      infoDesc.textContent  = exp.querySelector('.expand-desc').textContent;
-      infoTags.innerHTML    = exp.querySelector('.expand-tags').innerHTML;
-      infoPanel.classList.add('visible');
-      cards.forEach(function(c, i) { c.classList.toggle('is-active', i === idx); });
-      activeIdx = idx;
-    }
-
-    arrowPrev.addEventListener('click', function(e) { e.stopPropagation(); setCarouselImage(stageImgIdx - 1); });
-    arrowNext.addEventListener('click', function(e) { e.stopPropagation(); setCarouselImage(stageImgIdx + 1); });
-
-    // Click any card or the stage → open project detail page
     cards.forEach(function(card, i) {
-      card.addEventListener('click', function(e) {
-        e.stopPropagation();
-        window.location.href = 'project.html?id=' + (i + 1);
+      var projectUrl = 'project.html?id=' + (i + 1);
+      card.setAttribute('role', 'link');
+      card.setAttribute('tabindex', '0');
+      card.setAttribute('aria-label', 'View project ' + (i + 1) + ': ' +
+        (card.querySelector('.expand-title') ? card.querySelector('.expand-title').textContent.trim() : 'project'));
+
+      card.addEventListener('click', function() {
+        window.location.href = projectUrl;
+      });
+      card.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          window.location.href = projectUrl;
+        }
       });
     });
-    stage.addEventListener('click', function(e) {
-      if (e.target === arrowPrev || e.target === arrowNext) return;
-      if (activeIdx >= 0) window.location.href = 'project.html?id=' + (activeIdx + 1);
-    });
-
-    // Init — cards in 4×2 grid, stage pre-positioned but invisible
-    applyDefault(false);
-    positionStageOnly();
-
-    window.addEventListener('resize', function() {
-      if (inStrip) { applyStrip(false); } else { applyDefault(false); positionStageOnly(); }
-    });
-
-    var isTouch = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
-
-    if (isTouch) {
-      cards.forEach(function(card, i) {
-        card.addEventListener('click', function() {
-          if (!inStrip) {
-            inStrip = true;
-            applyStrip(true);
-            setTimeout(function() { updateStage(i); stage.classList.add('visible'); }, 420);
-          } else if (activeIdx === i) {
-            stage.classList.remove('visible');
-            inStrip = false; activeIdx = -1;
-            cards.forEach(function(c) { c.classList.remove('is-active'); });
-            setTimeout(function() { applyDefault(true); }, 50);
-          } else {
-            updateStage(i);
-          }
-        });
-      });
-    } else {
-      var readyTimer = null;
-      var dwellTimer = null;
-      var pendingIdx = -1;
-
-      cards.forEach(function(card, i) {
-        card.addEventListener('mouseenter', function() {
-          if (inStrip) {
-            // Strip mode: instant stage switch, no layout change
-            if (stage.classList.contains('visible')) updateStage(i);
-            return;
-          }
-          // Default mode: 1-second dwell before entering strip
-          clearTimeout(dwellTimer);
-          pendingIdx = i;
-          dwellTimer = setTimeout(function() {
-            inStrip = true;
-            applyStrip(true);
-            clearTimeout(readyTimer);
-            readyTimer = setTimeout(function() {
-              updateStage(pendingIdx);
-              stage.classList.add('visible');
-            }, 370);
-          }, 200);
-        });
-
-        card.addEventListener('mouseleave', function() {
-          // Cancel dwell if cursor leaves before 1s (only in default mode)
-          if (!inStrip && pendingIdx === i) {
-            clearTimeout(dwellTimer);
-            pendingIdx = -1;
-          }
-        });
-      });
-
-      mosaic.addEventListener('mouseleave', function() {
-        clearTimeout(dwellTimer);
-        clearTimeout(readyTimer);
-        clearTimeout(autoAdvTimer);
-        pendingIdx = -1;
-        if (!inStrip) return;
-        inStrip = false;
-        stage.classList.remove('visible');
-        infoPanel.classList.remove('visible');
-        activeIdx = -1;
-        cards.forEach(function(c) { c.classList.remove('is-active'); });
-        applyDefault(true);
-      });
-    }
   })();
 
   // ─── Hero lens ────────────────────────────────────────────
