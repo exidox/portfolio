@@ -121,6 +121,53 @@
       max-width: 680px; margin-bottom: 4rem;
     }
 
+    /* ── Behance-style project presentation ── */
+    .presentation-section {
+      margin: 0 0 5rem;
+    }
+    .presentation-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--bone-dim);
+      margin-bottom: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+    .presentation-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+    .presentation-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      width: 100%;
+    }
+    .presentation-stack img {
+      display: block;
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+      background: #0a0a0a;
+    }
+    .presentation-stack video {
+      display: block;
+      width: 100%;
+      max-height: 85vh;
+      height: auto;
+      background: #000;
+      object-fit: contain;
+    }
+    .presentation-stack video + img,
+    .presentation-stack img + video {
+      margin-top: 0;
+    }
+
     /* ── Gallery ── */
     .gallery-label {
       font-family: 'Space Mono', monospace; font-size: 9px;
@@ -221,6 +268,11 @@
     <div class="project-tags" id="proj-tags"></div>
     <p class="project-desc" id="proj-desc"></p>
 
+    <section class="presentation-section" id="presentation-section" hidden>
+      <div class="presentation-label">Project Presentation</div>
+      <div class="presentation-stack" id="presentation"></div>
+    </section>
+
     <div class="gallery-label">Gallery</div>
     <div class="gallery-grid" id="gallery"></div>
 
@@ -286,9 +338,11 @@
       },
       {
         num: '002', year: '2026', category: 'Situated Interaction',
-        title: 'La Suite numérique -> SuiteFlow',
-        desc: 'Proposed redesign of La Suite numérique - presented a temporal tool for managing workflows, cross-workspace structuring and data transfer as well as workspace personalization',
+        title: 'La Suite Numérique -> SuiteFlow',
+        desc: 'Proposed redesign of La Suite Numérique - presented a temporal tool for managing workflows, cross-workspace structuring and data transfer as well as workspace personalization',
         tags: ['Re-Design','UI Design', 'Generative Theories'],
+
+        presentation: ['imagesandvid/p7/Slides video Best size.mp4'],
         images: [
           'imagesandvid/p7/1.png',
           'imagesandvid/p7/Slides video Best size.mp4',
@@ -320,7 +374,20 @@
         title: 'Shadow Puppets',
         desc: 'This project tries to take this simple game further where Interactive Machine Learning can be utilized to teach kids gestures and explore and understand the behaviour of AI (model auditing).',
         tags: ['Interactive ML', 'Gesture Recognition'],
-        images: [
+        presentation: ['imagesandvid/p3/presentation/1.png', 
+          'imagesandvid/p3/presentation/2.png',
+          'imagesandvid/p3/presentation/3.png',
+          'imagesandvid/p3/presentation/4.png',
+          'imagesandvid/p3/presentation/5.png',
+          'imagesandvid/p3/presentation/6.png',
+          'imagesandvid/p3/presentation/7.png',
+          'imagesandvid/p3/presentation/8.png',
+          'imagesandvid/p3/presentation/9.png',
+          'imagesandvid/p3/presentation/10.png',
+          'imagesandvid/p3/presentation/11.png'
+
+        ],
+        images: [ 
           'imagesandvid/p3/image.png',
           'imagesandvid/p3/image (1).png',
           'imagesandvid/p3/artifactsportfolioimagesandvidp3image.png.gif',
@@ -332,6 +399,15 @@
         title: 'FoodCharm',
         desc: 'A keychain centered food sharing system that connects nearby donors to distribute food quickly to the community',
         tags: ['Interactive System','Product Design','User Experience Research'],
+        presentation: ['imagesandvid/p4/presentation/1.png', 
+          'imagesandvid/p4/presentation/2.png',
+          'imagesandvid/p4/presentation/3.png',
+          'imagesandvid/p4/presentation/4.png',
+          'imagesandvid/p4/presentation/5.png',
+          'imagesandvid/p4/presentation/6.png',
+          'imagesandvid/p4/presentation/7.png',
+          'imagesandvid/p4/presentation/8.png',
+          'imagesandvid/p4/presentation/9.jpg'],
         images: [
           'imagesandvid/p4/Rotate Radial Dial to control the inputs.png',
           'imagesandvid/p4/img1.jpeg',
@@ -345,6 +421,20 @@
         title: 'Plurivent',
         desc: 'A collaborative event planning app ensuring sturctured planning, fair paritcipation and conflict resolution ',
         tags: ['UI Design','App Design','Mobile Application'],
+        presentation: ['imagesandvid/p5/presentation/1.png', 
+          'imagesandvid/p5/presentation/2.png',
+          'imagesandvid/p5/presentation/3.png',
+          'imagesandvid/p5/presentation/4.png',
+          'imagesandvid/p5/presentation/5.png',
+          'imagesandvid/p5/presentation/6.png',
+          'imagesandvid/p5/presentation/7.png',
+          'imagesandvid/p5/presentation/8.png',
+          'imagesandvid/p5/presentation/9.png',
+          'imagesandvid/p5/presentation/10.png',
+          'imagesandvid/p5/presentation/11.png',
+          'imagesandvid/p5/presentation/12.png'
+
+        ],
         images: [
           'imagesandvid/p5/p5_base.png',
           'imagesandvid/p5/p5_hover.png'
@@ -355,6 +445,7 @@
         title: 'Illuminate',
         desc: 'A new version of Minesweeper called “ILLUMINATE”. This game is inspired by the Hindu festival Diwali which is the festival of lights.',
         tags: ['Game Design'],
+        presentation: ['imagesandvid/p6/Untitled design (2).gif'], 
         images: [
           'imagesandvid/p6/P6 pic 1.jpeg',
           'imagesandvid/p6/Untitled design (3).png',
@@ -362,21 +453,30 @@
           'imagesandvid/p6/Untitled design (2).gif'
         ]
       },
-      /* {
-        num: '007', year: '2025', category: 'Situated Interaction',
-        title: 'ZoomProMax (Video Calling System)',
-        desc: 'explain explain blahblaah balfjkfjkf.',
-        tags: ['UI Design', 'Generative Theories'],
-        images: [
-          'imagesandvid/p7/3.png',
-          'imagesandvid/p7/Untitled design (3).gif'
-        ]
-      }, */
+      
       {
         num: '008', year: '2025', category: 'VR ADHD Diagnosis',
         title: 'VR Diagnosis of ADHD',
         desc: 'VR game for diagnosis and support for individulas with AHDH. The game provides emotional support, immediate feedback and distractions in a controlled environment.',
         tags: ['Virtual Reality', 'Mental Health', 'ADHD'],
+        presentation: ['imagesandvid/p8/Untitled design (2).gif',
+        'imagesandvid/p8/presentation/1.png',
+          'imagesandvid/p8/presentation/2.png',
+          'imagesandvid/p8/presentation/3.png',
+          'imagesandvid/p8/presentation/4.png',
+          'imagesandvid/p8/presentation/5.png',
+          'imagesandvid/p8/presentation/6.png',
+          'imagesandvid/p8/presentation/7.png',
+          'imagesandvid/p8/presentation/8.png',
+          'imagesandvid/p8/presentation/9.png',
+          'imagesandvid/p8/presentation/10.png',
+          'imagesandvid/p8/presentation/11.png',
+          'imagesandvid/p8/presentation/12.png',
+          'imagesandvid/p8/presentation/13.png',
+          'imagesandvid/p8/presentation/14.png',
+          'imagesandvid/p8/presentation/15.png',
+          'imagesandvid/p8/presentation/16.png'
+        ], 
         images: [
           'imagesandvid/p8/Screenshot 2026-05-29 182222.png',
           'imagesandvid/p8/Untitled design (2).gif'
@@ -390,6 +490,39 @@
   return /\.(mp4|webm|ogg)(\?|$)/i.test(src);
 }
 
+function renderPresentation(project) {
+  var section = document.getElementById('presentation-section');
+  var container = document.getElementById('presentation');
+  var media = Array.isArray(project.presentation) ? project.presentation : [];
+
+  container.innerHTML = '';
+
+  if (!media.length) {
+    section.hidden = true;
+    return;
+  }
+
+  section.hidden = false;
+
+  media.forEach(function(src, i) {
+    if (isVideo(src)) {
+      var video = document.createElement('video');
+      video.src = src;
+      video.controls = true;
+      video.playsInline = true;
+      video.preload = 'metadata';
+      video.setAttribute('aria-label', project.title + ' presentation video');
+      container.appendChild(video);
+    } else {
+      var img = document.createElement('img');
+      img.src = src;
+      img.alt = project.title + ' presentation slide ' + (i + 1);
+      img.loading = 'lazy';
+      container.appendChild(img);
+    }
+  });
+}
+
     function render(project, idx) {
       document.title = project.title + ' — Shubham Bhatt';
       document.getElementById('nav-id').textContent = project.num + ' — ' + project.year;
@@ -398,6 +531,10 @@
       document.getElementById('meta-cat').textContent = '· ' + project.category;
       document.getElementById('proj-title').textContent = project.title;
       document.getElementById('proj-desc').textContent = project.desc;
+
+      // Presentation: images become a vertical Behance-style sequence;
+      // video files are rendered as responsive video players.
+      renderPresentation(project);
 
       // Hero: first image
       var heroImg = document.getElementById('hero-img');
