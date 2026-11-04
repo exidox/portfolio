@@ -52,47 +52,7 @@
   --c-lens-b: rgba(255,255,255,0.18);
   --c-mani-halo: radial-gradient(ellipse 60% 50% at 30% 50%, rgba(74,128,232,0.08), transparent 70%), radial-gradient(ellipse 40% 40% at 80% 60%, rgba(255,179,186,0.06), transparent 70%);
 }
-:root.light {
-  /* ── Light theme overrides ── */
-  --bg: #f5f0eb;
-  --bg-soft: #ede8e2;
-  --bone: #1a1a18;
-  --bone-dim: #6b6660;
-  --pink: #b04055;
-  --pink-dim: #7a2d3f;
-  --mint: #2a5c4a;
-  --mint-dim: #4a7a66;
-  --lavender: #5e4d80;
-  --blue: #2d5ab8;
-  --blue-soft: #3d5a9a;
-  --blue-dim: #1a3a7a;
-  --acid: #7a6f00;
-  --c-scanline: rgba(0,0,0,0.03);
-  --c-nav-bg: rgba(245,240,235,0.92);
-  --c-nav-border: rgba(42,92,74,0.25);
-  --c-badge-bg: rgba(245,240,235,0.88);
-  --c-overlay-bot: rgba(237,232,226,0.97);
-  --c-overlay-mid: rgba(237,232,226,0.55);
-  --c-tl-border: rgba(42,92,74,0.2);
-  --c-tl-hover: rgba(0,0,0,0.025);
-  --c-mani-border: rgba(42,92,74,0.2);
-  --c-mani-stroke: rgba(26,26,24,0.07);
-  --c-marquee-border: rgba(42,92,74,0.15);
-  --c-bento-border: rgba(42,92,74,0.18);
-  --c-bento-hover: rgba(42,92,74,0.45);
-  --c-lab-border: rgba(45,90,184,0.2);
-  --c-lab-hover: rgba(45,90,184,0.5);
-  --c-skill-track: rgba(0,0,0,0.07);
-  --c-skill-b: rgba(0,0,0,0.1);
-  --c-footer-bg: rgba(237,232,226,0.97);
-  --c-divider: rgba(42,92,74,0.3);
-  --c-scroll-line: rgba(42,92,74,0.22);
-  --c-work-border: rgba(42,92,74,0.18);
-  --c-tag-hover: rgba(45,90,184,0.06);
-  --c-lens-sh: inset 0 0 30px rgba(0,0,0,0.08), inset 0 0 60px rgba(45,90,184,0.08);
-  --c-lens-b: rgba(0,0,0,0.1);
-  --c-mani-halo: radial-gradient(ellipse 60% 50% at 30% 50%, rgba(45,90,184,0.06), transparent 70%), radial-gradient(ellipse 40% 40% at 80% 60%, rgba(176,64,85,0.05), transparent 70%);
-}
+
 * { box-sizing: border-box; cursor: none !important; margin: 0; padding: 0; }
 html { scroll-behavior: auto; -webkit-text-size-adjust: 100%; }
 body {
@@ -131,7 +91,7 @@ body::after {
 :root.light #cursor-trail { mix-blend-mode: multiply; }
 #cursor-dot { position: fixed; top: 0; left: 0; width: 8px; height: 8px; background: var(--bone); pointer-events: none; z-index: 9999; mix-blend-mode: difference; will-change: transform; image-rendering: pixelated; }
 #cursor-ring { position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9998; border: 1px solid var(--bone); will-change: transform, width, height, border-color; transition: width 180ms cubic-bezier(.2,.8,.2,1), height 180ms cubic-bezier(.2,.8,.2,1), border-color 180ms ease; }
-#loading {
+/* #loading {
   position: fixed; inset: 0;
   background: var(--bg);
   z-index: 10000;
@@ -160,7 +120,7 @@ body::after {
 .load-bottom-row { display: flex; justify-content: space-between; align-items: baseline; font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--bone-dim); }
 .load-bottom-row .pink { color: var(--pink); }
 .load-rotor { display: inline-block; animation: rotor 1.4s linear infinite; }
-@keyframes rotor { to { transform: rotate(360deg); } }
+@keyframes rotor { to { transform: rotate(360deg); } } */
 #scroll-progress { position: fixed; top: 0; left: 0; right: 0; z-index: 9995; pointer-events: none; }
 #scroll-progress .bar { display: flex; height: 3px; width: 100%; }
 #scroll-progress .cell { height: 100%; image-rendering: pixelated; transition: background 60ms linear; }
@@ -859,6 +819,273 @@ body { transition: background 400ms ease; }
   .hero-works-mosaic .hero-work::after { opacity: 1; font-size: 8px; }
 }
 
+
+/* ── Blue / Periwinkle / Indigo / Violet palette ── */
+:root {
+  --bg: #090F1F;
+  --bg-soft: #101A33;
+
+  --bone: #E7EDFF;
+  --bone-dim: #AAB9D8;
+
+  /* Replaces the old pink accent */
+  --pink: #B4A7FF;
+  --pink-dim: #766BB0;
+
+  /* Replaces the old mint accent */
+  --mint: #91B8FF;
+  --mint-dim: #607FB8;
+
+  --lavender: #C3B8FF;
+
+  --blue: #789EFF;
+  --blue-soft: #D5E1FF;
+  --blue-dim: #405B9B;
+
+  --acid: #B8ADFF;
+
+  --c-scanline: rgba(5, 9, 25, 0.08);
+  --c-nav-bg: rgba(9, 15, 31, 0.88);
+  --c-nav-border: rgba(145, 184, 255, 0.22);
+  --c-badge-bg: rgba(9, 15, 31, 0.88);
+
+  --c-overlay-bot: rgba(9, 15, 31, 0.96);
+  --c-overlay-mid: rgba(9, 15, 31, 0.48);
+
+  --c-tl-border: rgba(145, 184, 255, 0.28);
+  --c-tl-hover: rgba(145, 184, 255, 0.035);
+
+  --c-mani-border: rgba(145, 184, 255, 0.22);
+  --c-mani-stroke: rgba(231, 237, 255, 0.07);
+
+  --c-marquee-border: rgba(145, 184, 255, 0.22);
+  --c-bento-border: rgba(145, 184, 255, 0.20);
+  --c-bento-hover: rgba(145, 184, 255, 0.48);
+
+  --c-lab-border: rgba(120, 158, 255, 0.24);
+  --c-lab-hover: rgba(120, 158, 255, 0.58);
+
+  --c-skill-track: rgba(213, 225, 255, 0.07);
+  --c-skill-b: rgba(213, 225, 255, 0.13);
+
+  --c-footer-bg: rgba(9, 15, 31, 0.96);
+  --c-divider: rgba(145, 184, 255, 0.25);
+  --c-scroll-line: rgba(145, 184, 255, 0.24);
+  --c-work-border: rgba(145, 184, 255, 0.20);
+
+  --c-tag-hover: rgba(120, 158, 255, 0.09);
+
+  --c-lens-sh:
+    inset 0 0 30px rgba(231, 237, 255, 0.15),
+    inset 0 0 60px rgba(120, 158, 255, 0.16);
+
+  --c-lens-b: rgba(231, 237, 255, 0.20);
+
+  --c-mani-halo:
+    radial-gradient(
+      ellipse 60% 50% at 30% 50%,
+      rgba(120, 158, 255, 0.10),
+      transparent 70%
+    ),
+    radial-gradient(
+      ellipse 40% 40% at 80% 60%,
+      rgba(180, 167, 255, 0.08),
+      transparent 70%
+    );
+}
+
+/* ── Light theme: cool blue / violet ── */
+:root.light {
+  --bg: #F3F5FC;
+  --bg-soft: #E8EDFA;
+
+  --bone: #17213A;
+  --bone-dim: #596987;
+
+  --pink: #7664C8;
+  --pink-dim: #6555A6;
+
+  --mint: #416BB7;
+  --mint-dim: #6685B8;
+
+  --lavender: #7664C8;
+
+  --blue: #416BB7;
+  --blue-soft: #526EA9;
+  --blue-dim: #304E88;
+
+  --acid: #A99BEF;
+
+  --c-scanline: rgba(35, 55, 100, 0.025);
+  --c-nav-bg: rgba(243, 245, 252, 0.94);
+  --c-nav-border: rgba(65, 107, 183, 0.22);
+  --c-badge-bg: rgba(243, 245, 252, 0.92);
+
+  --c-overlay-bot: rgba(232, 237, 250, 0.97);
+  --c-overlay-mid: rgba(232, 237, 250, 0.60);
+
+  --c-tl-border: rgba(65, 107, 183, 0.22);
+  --c-tl-hover: rgba(65, 107, 183, 0.035);
+
+  --c-mani-border: rgba(65, 107, 183, 0.20);
+  --c-mani-stroke: rgba(23, 33, 58, 0.07);
+
+  --c-marquee-border: rgba(65, 107, 183, 0.18);
+  --c-bento-border: rgba(65, 107, 183, 0.18);
+  --c-bento-hover: rgba(65, 107, 183, 0.42);
+
+  --c-lab-border: rgba(65, 107, 183, 0.22);
+  --c-lab-hover: rgba(65, 107, 183, 0.52);
+
+  --c-skill-track: rgba(23, 33, 58, 0.06);
+  --c-skill-b: rgba(23, 33, 58, 0.10);
+
+  --c-footer-bg: rgba(232, 237, 250, 0.97);
+  --c-divider: rgba(65, 107, 183, 0.24);
+  --c-scroll-line: rgba(65, 107, 183, 0.20);
+  --c-work-border: rgba(65, 107, 183, 0.20);
+
+  --c-tag-hover: rgba(65, 107, 183, 0.07);
+
+  --c-lens-sh:
+    inset 0 0 30px rgba(23, 33, 58, 0.08),
+    inset 0 0 60px rgba(65, 107, 183, 0.10);
+
+  --c-lens-b: rgba(23, 33, 58, 0.12);
+
+  --c-mani-halo:
+    radial-gradient(
+      ellipse 60% 50% at 30% 50%,
+      rgba(65, 107, 183, 0.07),
+      transparent 70%
+    ),
+    radial-gradient(
+      ellipse 40% 40% at 80% 60%,
+      rgba(118, 100, 200, 0.05),
+      transparent 70%
+    );
+}
+
+/* ── Replace remaining hard-coded warm accents ── */
+.hero-work-expand {
+  background: linear-gradient(
+    to top,
+    rgba(9, 15, 31, 0.97) 35%,
+    rgba(9, 15, 31, 0.55) 65%,
+    transparent 100%
+  );
+}
+
+.stage-arrow {
+  background: rgba(9, 15, 31, 0.78);
+}
+
+.stage-arrow:hover {
+  background: rgba(25, 39, 72, 0.96);
+}
+
+.hero-works-mosaic .hero-work::after {
+  background: rgba(9, 15, 31, 0.88);
+}
+
+.intro-tag {
+  color: rgba(170, 185, 216, 0.45);
+}
+
+.load-bar-wrap {
+  background: rgba(231, 237, 255, 0.08);
+}
+
+/* ── Tighter Hero → About → Projects transition ── */
+
+/* Bring About closer to the introductory hero */
+#about {
+  padding: 3rem 1.5rem 1.5rem;
+  background: var(--bg);
+}
+
+@media (min-width: 768px) {
+  #about {
+    padding: 3.5rem 2.5rem 1.25rem;
+      padding-bottom: 4rem;
+  }
+}
+
+/* Reduce the excessive space inside About */
+#about .about-header {
+  margin-bottom: 2rem;
+}
+
+
+@media (min-width: 768px) {
+  #about .about-header {
+    margin-bottom: 2.5rem;
+  }
+}
+
+/* Let Projects continue directly from About */
+#projects {
+  min-height: auto;
+  justify-content: flex-start;
+  padding: 1.25rem 1.5rem 4rem;
+  background: var(--bg);
+}
+
+@media (min-width: 768px) {
+  #projects {
+    padding: 1.25rem 2.5rem 4rem;
+  }
+  #about {
+    padding-bottom: 5rem;
+  }
+
+}
+
+/* Tighten the heading-to-mosaic transition */
+#projects .projects-heading {
+  margin-bottom: 2rem;
+}
+
+/* Avoid an unnecessary gap after the mosaic */
+.hero-works-mosaic {
+  margin-bottom: 2;
+}
+
+/* ── Clear section heading hierarchy ── */
+
+/* Main section headings: 01 About, 02 Projects, etc. */
+.hero-eyebrow,
+.field-header .label,
+.skills-label,
+.contact-label {
+  font-size: clamp(20px, 2vw, 28px) !important;
+  letter-spacing: 0.08em;
+  line-height: 1.2;
+}
+
+/* Descriptive headings beneath the section labels */
+#about .about-header h2,
+#projects .projects-heading {
+  font-size: clamp(1.8rem, 3.2vw, 3.4rem) !important;
+  line-height: 1.12;
+}
+
+/* Smaller screens */
+@media (max-width: 640px) {
+  .hero-eyebrow,
+  .field-header .label,
+  .skills-label,
+  .contact-label {
+    font-size: 18px !important;
+  }
+
+  #about .about-header h2,
+  #projects .projects-heading,
+  {
+    font-size: clamp(1.7rem, 7vw, 2.4rem) !important;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -874,7 +1101,7 @@ body { transition: background 400ms ease; }
   </defs>
 </svg>
 
-<div id="loading" aria-hidden="true">
+<!-- <div id="loading" aria-hidden="true">
   <div class="load-top">
     <div class="col">
       <span>Index — 00</span>
@@ -899,7 +1126,7 @@ body { transition: background 400ms ease; }
       <span class="pink" id="load-status">connecting</span>
     </div>
   </div>
-</div>
+</div> -->
 
 <div class="grain" aria-hidden="true"></div>
 <canvas id="cursor-trail" aria-hidden="true"></canvas>
@@ -920,11 +1147,7 @@ body { transition: background 400ms ease; }
     <li><a href="#contact" class="nav-link" data-magnet="0.35"><span class="idx">06</span><span>Contact</span></a></li>
   </ul>
   <div style="display:flex;align-items:center;gap:1.25rem;">
-    <button id="theme-toggle" aria-label="Toggle theme" class="theme-toggle">◐ </button>
-    <div class="nav-clock">
-      <span class="pulse-dot" aria-hidden="true"></span>
     </div>
-  </div>
 </nav>
 
 <!-- ── Intro / Name Splash ────────────────────────────── -->
@@ -1177,9 +1400,6 @@ body { transition: background 400ms ease; }
 </a>
       </div>
     </div>
-    <div class="badge-wrap reveal">
-      <canvas id="id-badge"></canvas>
-    </div>
   </div>
 </section>
 
@@ -1331,45 +1551,7 @@ document.addEventListener('DOMContentLoaded', function () {
   })();
 
 
-  // ─── Loading screen ───────────────────────────────────────
-  (function () {
-    var numEl = document.getElementById('load-num');
-    var barEl = document.getElementById('load-bar');
-    var statusEl = document.getElementById('load-status');
-    var loadingEl = document.getElementById('loading');
-    if (!numEl || !barEl || !statusEl || !loadingEl) return;
-    var total = 2400;
-    var start = performance.now();
-    var stages = [[0,'connecting'],[22,'loading fonts'],[42,'mounting canvas'],[62,'binding particles'],[80,'initialising lens'],[94,'ready']];
-    var lastStage = '';
-    var ease = function(t) { return t < 0.5 ? 2*t*t : 1 - Math.pow(-2*t + 2, 2)/2; };
-    var tick = function(now) {
-      var t = Math.min(1, (now - start) / total);
-      var v = Math.round(ease(t) * 100);
-      numEl.textContent = String(v);
-      barEl.style.width = v + '%';
-      var st = stages[0][1];
-      for (var i = 0; i < stages.length; i++) { if (v >= stages[i][0]) st = stages[i][1]; }
-      if (st !== lastStage) { statusEl.textContent = st; lastStage = st; }
-      if (t < 1) requestAnimationFrame(tick);
-      else setTimeout(function() { loadingEl.classList.add('hidden'); }, 220);
-    };
-    requestAnimationFrame(tick);
-  })();
-
-  // ─── Paris time clock ─────────────────────────────────────
-  var timeEl = document.getElementById('paris-time');
-  if (timeEl) {
-    var updateTime = function() {
-      try {
-        var t = new Date().toLocaleTimeString('en-GB', { timeZone: 'Europe/Paris', hour: '2-digit', minute: '2-digit', hour12: false });
-        timeEl.textContent = t + ' PAR';
-      } catch(e) { timeEl.textContent = '--:-- PAR'; }
-    };
-    updateTime();
-    setInterval(updateTime, 30000);
-  }
-
+ 
   // ─── Nav scroll ───────────────────────────────────────────
   var nav = document.getElementById('site-nav');
   if (nav) {
@@ -1778,67 +1960,6 @@ document.addEventListener('DOMContentLoaded', function () {
     };
     render();
   });
-
-  // ─── ID badge canvas ──────────────────────────────────────
-  (function() {
-    var c = document.getElementById('id-badge');
-    if (!c) return;
-    var ctx = c.getContext('2d');
-    c.width = 300; c.height = 400;
-    var time = 0;
-    var render = function() {
-      ctx.clearRect(0,0,c.width,c.height);
-      time += 0.05;
-      var size = 8;
-      for (var y = 0; y < c.height; y += size) {
-        for (var x = 0; x < c.width; x += size) {
-          var n = Math.sin(x*0.02+time*0.5)*Math.cos(y*0.02)+Math.sin(time);
-          var lt = document.documentElement.classList.contains('light');
-          if (n > 0.5) ctx.fillStyle = lt ? '#2a5c4a' : '#b5eada';
-          else if (n > 0) ctx.fillStyle = lt ? '#b04055' : '#ffb3ba';
-          else if (n > -0.5) ctx.fillStyle = lt ? '#5e4d80' : '#c5b9cd';
-          else continue;
-          ctx.fillRect(x,y,size-1,size-1);
-        }
-      }
-      ctx.fillStyle = document.documentElement.classList.contains('light') ? 'rgba(245,240,235,0.88)' : 'rgba(5,5,5,0.8)';
-      ctx.fillRect(0,0,c.width,60);
-      ctx.fillRect(0,c.height-100,c.width,100);
-      ctx.fillStyle = document.documentElement.classList.contains('light') ? '#2a5c4a' : '#b5eada';
-      ctx.font = '12px "Space Mono", monospace';
-      /* ctx.fillText('ID: SB-2026-HCI',20,30);
-      ctx.fillText('STATUS: ACTIVE',20,50); */
-      ctx.fillText('SHUBHAM BHATT',20,c.height-70);
-      ctx.fillText('HCI RESEARCHER',20,c.height-50);
-      requestAnimationFrame(render);
-    };
-    render();
-  })();
-
-  // ─── Theme toggle ─────────────────────────────────────────
-  (function() {
-    var btn = document.getElementById('theme-toggle');
-    if (!btn) return;
-    var apply = function(light) {
-      if (light) {
-        document.documentElement.classList.add('light');
-        btn.textContent = '◑';
-        btn.title = 'Switch to dark mode';
-      } else {
-        document.documentElement.classList.remove('light');
-        btn.textContent = '◐';
-        btn.title = 'Switch to light mode';
-      }
-      document.dispatchEvent(new CustomEvent('themechange'));
-    };
-    var saved = localStorage.getItem('theme');
-    apply(saved === 'light');
-    btn.addEventListener('click', function() {
-      var isLight = document.documentElement.classList.contains('light');
-      localStorage.setItem('theme', isLight ? 'dark' : 'light');
-      apply(!isLight);
-    });
-  })();
 
 });
 </script>
